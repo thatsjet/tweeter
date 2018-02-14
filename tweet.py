@@ -11,8 +11,6 @@
 import sqlite3, tweepy, yaml, unittest
 from sqlite3 import Error
 
-debug = True
-
 # define the main tweeting function
 def tweetit (tweet,file):
     # make connection to the twitter API
