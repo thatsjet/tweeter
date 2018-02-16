@@ -11,6 +11,9 @@
 import sqlite3, tweepy, yaml, unittest
 from sqlite3 import Error
 
+# Setting to True will still get tweets but won't tweet it or update DB
+debug = False
+
 # define the main tweeting function
 def tweetit (tweet,file):
     # make connection to the twitter API
@@ -50,18 +53,20 @@ def tweet_that_shit(tweet):
     auth = tweepy.OAuthHandler(keys["consumer_key"], keys["consumer_secret"])
     auth.set_access_token(keys["access_token"],keys["access_token_secret"])
     api = tweepy.API(auth)
-    api.update_status(tweet+" | #FridayFunny #AppSec #DevSecOps")
+    if not debug: api.update_status(tweet+" | #FridayFunny #AppSec #DevSecOps")
     return
 
 def update_tweet_date(conn,id):
+    if debug: print "Updating tweetid: ",id
+
     """
     update the date of that old crusty ass tweet to today's date
     :param conn: the Connection object
     :return:
     """
     cur = conn.cursor()
-    cur.execute("UPDATE tweets SET tdate=date('now','-1 day') WHERE id=?", str(id))
-    conn.commit()
+    if not debug: cur.execute("UPDATE tweets SET tdate=date('now','-1 day') WHERE id=?", [id])
+    if not debug: conn.commit()
 
     return
 
@@ -74,7 +79,8 @@ def main():
         oldtweet = get_oldest_tweet(conn)
         tweetid = oldtweet[0]
         tweetit = oldtweet[1]
-        tweet_that_shit(tweetit)
+        print tweetid,tweetit
+        #tweet_that_shit(tweetit)
         update_tweet_date(conn,tweetid)
 
 if __name__ == '__main__':

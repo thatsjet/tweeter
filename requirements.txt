@@ -1,0 +1,4 @@
+
+sqlite3 == 3.19.3
+tweepy >= 3.5.0
+pyyaml > 3.12
