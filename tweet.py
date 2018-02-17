@@ -79,8 +79,8 @@ def main():
         oldtweet = get_oldest_tweet(conn)
         tweetid = oldtweet[0]
         tweetit = oldtweet[1]
-        print tweetid,tweetit
-        #tweet_that_shit(tweetit)
+        if not debug: print tweetid,tweetit
+        tweet_that_shit(tweetit)
         update_tweet_date(conn,tweetid)
 
 if __name__ == '__main__':
