@@ -1,2 +1,7 @@
+<<<<<<< HEAD
+=======
+
+pysqlite>=3.19
+>>>>>>> d64e07a6b6207be4000ba9822834701c3c7ad4b8
 tweepy>=3.5.0
 pyyaml>=3.12
