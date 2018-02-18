@@ -82,15 +82,9 @@ def main():
         oldtweet = get_oldest_tweet(conn)
         tweetid = oldtweet[0]
         tweetit = oldtweet[1]
-<<<<<<< HEAD
         if debug: print tweetid,tweetit
         if not debug: tweet_that_shit(tweetit)
         if not debug: update_tweet_date(conn,tweetid)
-=======
-        if not debug: print tweetid,tweetit
-        tweet_that_shit(tweetit)
-        update_tweet_date(conn,tweetid)
->>>>>>> d64e07a6b6207be4000ba9822834701c3c7ad4b8
 
 if __name__ == '__main__':
     main()
