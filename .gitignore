@@ -1,3 +1,5 @@
 config.yml
 .git
 dependencies*
+tweets.db
+tweeter.log
