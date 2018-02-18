@@ -12,6 +12,9 @@
 
 import sqlite3, tweepy, yaml, logging
 from sqlite3 import Error
+from time import localtime, strftime
+
+
 
 # Log output so we know this is running. I run this via cron, so
 # clean this up regularly if you do too.
@@ -77,6 +80,9 @@ def main():
     # create a database connection
     database = "tweets.db"
     conn = create_connection(database)
+
+    time = strftime("%c", localtime())
+    log.info("Running at " + time )
 
     with conn:
         oldtweet = get_oldest_tweet(conn)
