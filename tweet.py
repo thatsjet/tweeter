@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 
 
 # Setting to True will still get tweets but won't tweet it or update DB
-debug = True 
+debug = False
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database
