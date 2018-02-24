@@ -10,20 +10,20 @@
 # Last Updated: 2018-02-11
 # Version 0.1a
 
-import sqlite3, tweepy, yaml, logging
+import sqlite3, tweepy, yaml, logging, os
 from sqlite3 import Error
 from time import localtime, strftime
 
-
+rootpath = os.path.dirname(os.path.abspath(__file__))
 
 # Log output so we know this is running. I run this via cron, so
 # clean this up regularly if you do too.
-logging.basicConfig(filename='tweeter.log',level=logging.INFO)
+logging.basicConfig(filename=rootpath+'/tweeter.log',level=logging.INFO)
 log = logging.getLogger(__name__)
 
 
 # Setting to True will still get tweets but won't tweet it or update DB
-debug = False
+debug = True
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database
@@ -78,7 +78,8 @@ def update_tweet_date(conn,id):
 
 def main():
     # create a database connection
-    database = "tweets.db"
+    database = rootpath + "/tweets.db"
+    log.info("connecting to database: " + database)
     conn = create_connection(database)
 
     time = strftime("%c", localtime())
